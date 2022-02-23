@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package xtdb_protos;
+
+import "google/protobuf/wrappers.proto";
+
+message EntityRequest {
+    string eid = 1;
+}
+
+message EntityResponse {
+    string edn = 1;
+}
+
+message EntityTxRequest {
+    string eid = 1;
+}
+
+message EntityTxResponse {
+  string xt_id = 1;
+  string content_hash = 2;
+  string valid_time = 3;
+  string tx_time = 4;
+  int32 tx_id = 5;
+}
+
+enum SortOrder {
+    ASC = 0;
+    DESC = 1;
+}
+
+message EntityHistoryRequest {
+    string eid = 1;
+    SortOrder sort_order = 2;
+    optional bool with_corrections = 3;
+    optional bool with_docs = 4;
+    optional string start_valid_time = 5;
+    optional string start_tx_time = 6;
+    optional int32 start_tx_id = 7;
+    optional string end_valid_time = 8;
+    optional string end_tx_time = 9;
+    optional int32 end_tx_id = 10;
+}
+
+message EntityHistoryResponseUnit {
+    string content_hash = 1;
+    string valid_time = 2;
+    string tx_time = 3;
+    int64 tx_id = 4;
+    string doc = 5;
+}
+
+message EntityHistoryResponse {
+    repeated EntityHistoryResponseUnit list = 1;
+}

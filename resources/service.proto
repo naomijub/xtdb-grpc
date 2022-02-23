@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package xtdb_protos;
+
+import "transaction.proto";
+import "entity.proto";
+import "utils.proto";
+
+message Empty { }
+
+message StatusResponse {
+    string version = 1;
+    int32 index_version = 2;
+    string kv_store = 3;
+    int32 estimate_num_keys = 4;
+    int64 size = 5;
+    optional string revision = 6;
+    optional string consumer_state = 7;
+}
+
+service GrpcApi {
+  rpc status (Empty) returns (StatusResponse);
+  rpc entity (xtdb_protos.EntityRequest) returns (xtdb_protos.EntityResponse);
+  rpc entity_tx (xtdb_protos.EntityTxRequest) returns (xtdb_protos.EntityTxResponse);
+  rpc entity_history (xtdb_protos.EntityHistoryRequest) returns (xtdb_protos.EntityHistoryResponse);
+  rpc submit_tx (xtdb_protos.SubmitRequest) returns (xtdb_protos.SubmitResponse);
+}

@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package xtdb_protos;
+
+import "google/protobuf/struct.proto";
+
+message Transaction {
+    oneof transaction_type {
+        Put put = 1;
+        Delete delete = 2;
+        Match match = 3;
+        Evict evict = 4;
+        Function function = 5;
+        PutFunction put_function = 6;
+    }
+}
+
+message Put {
+    google.protobuf.Value document = 1;
+    string valid_time = 2;
+    string end_valid_time = 3;
+}
+
+message Delete {
+    string document_id = 1;
+    string valid_time = 2;
+    string end_valid_time = 3;
+}
+
+message Match {
+    string document_id = 1;
+    google.protobuf.Value document_match = 3;
+    string valid_time = 4;
+}
+
+message Evict {
+    string document_id = 1;
+}
+
+message Function {
+    string xt_id = 1;
+    repeated google.protobuf.Value arguments = 2;
+}
+
+message PutFunction {
+    string xt_id = 1;
+    string xt_fn = 2;
+}
+
+message SubmitRequest {
+    repeated Transaction tx_ops = 1;
+} 
+
+message SubmitResponse {
+    string tx_time = 1;
+    int64 tx_id = 2;
+}
