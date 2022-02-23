@@ -4,7 +4,6 @@ package xtdb_protos;
 
 import "transaction.proto";
 import "entity.proto";
-import "utils.proto";
 
 message Empty { }
 

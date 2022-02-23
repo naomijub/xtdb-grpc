@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package xtdb_protos;
 
-import "google/protobuf/wrappers.proto";
-
 message EntityRequest {
     string eid = 1;
 }
