@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package com.grpc.xtdb;
+
+message None { }
+
+message OptionalString {
+    oneof option {
+        string some = 1;
+        None none = 2;
+    }
+}
+
+message OptionalBool {
+    oneof option {
+        bool some = 1;
+        None none = 2;
+    }
+}
+
+message OptionalInt64 {
+    oneof option {
+        int64 some = 1;
+        None none = 2;
+    }
+}

@@ -38,3 +38,8 @@ build/
 
 .clj-kondo/
 .lsp
+
+**/.DS_Store
+.DS_Store
+../.DS_Store
+.calva/

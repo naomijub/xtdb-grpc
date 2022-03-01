@@ -1,13 +1,16 @@
 syntax = "proto3";
 
-package xtdb_protos;
+package com.grpc.xtdb;
+
+import "utils.proto";
+import "google/protobuf/struct.proto";
 
 message EntityRequest {
     string eid = 1;
 }
 
 message EntityResponse {
-    string edn = 1;
+    google.protobuf.Value edn = 1;
 }
 
 message EntityTxRequest {
@@ -30,14 +33,14 @@ enum SortOrder {
 message EntityHistoryRequest {
     string eid = 1;
     SortOrder sort_order = 2;
-    optional bool with_corrections = 3;
-    optional bool with_docs = 4;
-    optional string start_valid_time = 5;
-    optional string start_tx_time = 6;
-    optional int32 start_tx_id = 7;
-    optional string end_valid_time = 8;
-    optional string end_tx_time = 9;
-    optional int32 end_tx_id = 10;
+    bool with_corrections = 3;
+    bool with_docs = 4;
+    string start_valid_time = 5;
+    string start_tx_time = 6;
+    com.grpc.xtdb.OptionalInt64 start_tx_id = 7;
+    string end_valid_time = 8;
+    string end_tx_time = 9;
+    com.grpc.xtdb.OptionalInt64 end_tx_id = 10;
 }
 
 message EntityHistoryResponseUnit {

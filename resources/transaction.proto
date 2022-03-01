@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package xtdb_protos;
+package com.grpc.xtdb;
 
 import "google/protobuf/struct.proto";
 
